@@ -24,7 +24,7 @@ namespace DotNet_DataConversion
         {
             string file = System.Windows.Forms.Application.ExecutablePath;
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(file);
+            var config = ConfigurationManager.OpenExeConfiguration(file);
 
             var s = config.FilePath;
 
@@ -46,14 +46,23 @@ namespace DotNet_DataConversion
         public static void UpdateAppConfig(string newKey, string newValue)
         {
             string file = System.Windows.Forms.Application.ExecutablePath;
-            Configuration config = ConfigurationManager.OpenExeConfiguration(file);
+
+            var config = ConfigurationManager.OpenExeConfiguration(file);
+
             bool exist = false;
+
             foreach (string key in config.AppSettings.Settings.AllKeys)
             {
-                if (key == newKey) { exist = true; }
+                if (key == newKey)
+                {
+                    exist = true;
+                }
             }
 
-            if (exist) { config.AppSettings.Settings.Remove(newKey); }
+            if (exist)
+            {
+                config.AppSettings.Settings.Remove(newKey);
+            }
 
             config.AppSettings.Settings.Add(newKey, newValue);
 
@@ -98,11 +107,17 @@ namespace DotNet_DataConversion
 
             //如果要更改的连接字符串已经存在
 
-            if (config.ConnectionStrings.ConnectionStrings[newName] != null) { exist = true; }
+            if (config.ConnectionStrings.ConnectionStrings[newName] != null)
+            {
+                exist = true;
+            }
 
             //如果连接串已存在 首先删除它
 
-            if (exist) { config.ConnectionStrings.ConnectionStrings.Remove(newName); }
+            if (exist)
+            {
+                config.ConnectionStrings.ConnectionStrings.Remove(newName);
+            }
 
             //新建一个连接字符串实例
 

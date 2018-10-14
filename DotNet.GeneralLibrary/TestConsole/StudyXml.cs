@@ -1,5 +1,4 @@
 ﻿using DotNet_DataConversion;
-using DotNet_DataConversion.Xml;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,4 +53,19 @@ namespace TestConsole
             Console.ReadKey();
         }
     }
+    class XMLTest 
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+    }
+    class JsonTest 
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Address { get; set; }
+        public char Sex { get; set; }
+    }
 }
+
